@@ -1,0 +1,66 @@
+             1/12/2025 ------ DAY 1 ------ UNDERSTANDING ABOUT CLEAN CODE BOOK AND PROJECTS PREREQUISITES 
+
+
+
+TOTAL COST OF OWNING A MESS :: 
+
+
+
+
+The book Clean Code focuses on theoretical principles and best practices for writing good code.
+
+
+The goal is not just reading theory, but practically applying the knowledge while writing and reviewing code.
+
+
+We will learn by reading lots of code, analyzing what is good and what is bad.
+
+
+The book teaches:
+
+Principles of clean coding
+
+Patterns for writing clean, maintainable code
+
+How to write clean code in practice
+
+
+It also includes case studies showing real code and its step-by-step transformation into cleaner versions.
+
+
+We will learn how to transform bad code into good code.
+
+
+Code represents the detailed specifications required for machines to execute tasks.
+
+
+Rushing code to market leads to:
+
+Hard-to-maintain complexity
+
+Expensive updates
+
+Possible system failures or shutdowns
+
+Developers end up wading through senseless code when the original code is poorly structured
+
+
+Keeping a code clean = Professional Survival 
+
+Why good code turns into bad code?? Schedules , Requirments ,  Managers etc -- but its in ourselves 
+We write the code...
+
+
+Managers -- Defend schedules and Req 
+Us -- Defend clean code
+
+
+Clean code should be enhanced and developed by someone other than the author. Easy to change...not only easy to read. Test driven development is the most fundamental discipline to develop codes -- Big Dave 
+
+Clean code will always look like its written by someone who cares ( about the craft ). -- Micheal Feathers
+
+Runs all tests , has no duplications and expresses all the design ides that are in the requirements 
+Minimizes the number of entities classes functions etc  -- Ronn Jefferies
+
+
+
