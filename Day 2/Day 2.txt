@@ -1,0 +1,52 @@
+When we read clean code we wont be surprised at all --- we wont notice any profound or anything 
+
+Beautiful code makes the language was made for the code. 
+
+Ratio of time spending on reading vs writing 10:1 --- so, we want the reading of code to be easy which essentially makes us easy to write. --- Make it easy to read.
+
+The code has to kept well overtime. We need to look at our code all the time so it wont rot. -- Continous improvement is an intrinsic part of professionalism 
+
+Prequel and Priciples.
+-- Author talks about his previous book  - Agile software Dev - PPP 
+-- The books give us thoughts , techniques and experience of other programmers and not directly make us code well.
+
+End of lesson 1
+
+
+
+Meaningfull names
+
+-- Use Intention revealing names
+> Everyone who reads the code should understand
+> It should tell what the variable does.
+> Easier to Understand and change code
+
+Concept names for variables makes it well crafted name. -- More Explicit 
+
+Avoid Disinformation: 
+>ex : hp , aix , sco are names of unix platforms -- bad var names
+>ex : 
+ Grouping of accounts : 
+    AccountList = [] XXXX
+    accountGroup = [] //Correct 
+>Even if its a list , using the name list wont be a good use 
+
+
+> The programmer will not see ur comments and likely to take the code//var just like that. XXX Combination of lowercase and uppercase
+> Need to make meaningfull distinctions 
+   >number series?? noise words ??? XXXX
+
+
+
+>>Using Pronounceable names : 
+
+
+
+ public static void copyChars(char a1[], char a2[]) {
+    for (int i = 0; i < a1.length; i++) {
+      a2[i] = a1[i]; 
+    }
+  }
+
+>> Need to use more pronounceable names while creating one.
+>> Source and Destination must be more specific while naming and using same a1,a2,a3....wont be good use of creating new variable names.
