@@ -1,0 +1,26 @@
+Using pronouncable names--- the author gives a example about a fun convo between employees
+
+Use Searchable names ::
+ > 'e' is used everywhere 
+ > single letter names cannot be used for var 
+ > the length of var should correspond to its scope 
+ 
+> Longer function sometimes = better understanding of code 
+> Avoid Encodings.. 
+
+-- class name xxx verb 
+-- method names --- set , get , is etc
+
+
+> Choose clarity over entertainment value --- Dont use cute names.
+> One word for each method 
+> Function names has to be standalone and direct
+> Avoid using same words for two purposes 
+> 'add' can mean anything -- we need to use alternatives based on what our method is doing 
+
+-- Use Solution Domain names > use names from the problem domain 
+> Add meaningful contexts 
+
+
+> Dont use shortforms for the problems's context 
+> Shorter , the better unless and until they give clear context
