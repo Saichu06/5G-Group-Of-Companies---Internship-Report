@@ -1,0 +1,43 @@
+New Chapter -- FUNCTIONS -- 
+
+
+>> FitNesse Code which includes many loops functions and api's 
+  -- > Problems with the code : 
+         > Too long -- has many nested if loops 
+         > Has too many logic's such as business , wikipage , String Building etc in one function
+         > Poor naming clarity
+
+>> Outcome of author's experience in writing function  - Functions should be small -- ( of the page size )
+>> Author talks about his experience with Kent Beck and about their programming and his java project
+>> He tells about how small his function lines were and was about 2-3 lines etc
+
+>> If the functions are small -- more descriptive var names can be used 
+>> Author differentiates about the 3 example codes which he told 
+    >> Listing one does more work than the other 2 
+    >> But his last listing ( 3 ) does only what is required and only does 'one job
+    >> 3 things its doing --  
+         1. Determining whether the page is a test page. 
+         2. If so, including setups and teardowns. 
+         3. Rendering the page in HTML.
+
+>> Switch Statements : 
+   - always do N things 
+   - some switch statements do many things and violates open close operable things 
+   - switch statements must differ in structure if we are using many of them 
+   - not a Saas model ( my view ) 
+   - Author's rule -- switch used once with polymorphism way of representing 
+
+>> Representation of data must be using abstraction as the rest of the system can see it and every 
+circumstance is unique.
+>> Author speaks about using descriptive names is fine unless and until it explains what the code does 
+and is used in small functions. 
+>> Long descriptive name > small random name
+>> It will clarify the design of the module 
+>> Use the same phrases, nouns, and verbs in the function
+names you choose for your modules. Consider, for example, the names includeSetup
+AndTeardownPages, includeSetupPages, includeSuiteSetupPage, and includeSetupPage
+
+>> Function Arguments 
+  >> advised not to use more than 2 
+  >> using a instance variable is better than passing arguments 
+  >> 
