@@ -1,0 +1,43 @@
+Continuation of the Clean Code book :: Today goal 41-50
+
+Author talks about parameters in functions..
+
+>The fewer arguments a function takes, the clearer the code becomes.
+>Side effects, output arguments, flag arguments, error codes, and large functions all destroy clarity
+
+>Robert mentions the line 'Output arguments are harder to understand than input arguments' and he says this 
+because programmers usually tend to depend on output from return values.
+
+>Bad code example :: void includeSetupPageInto(StringBuffer pageText)
+  >> Reason : Here, pageText is looking like a input but its modified to get the output
+_____________________________________
+ 
+>Good code example :: StringBuffer transform(StringBuffer in)
+  >> Even when returning the same object , it fits the expected pattern
+
+>> 2 common reasons for having one argument 
+       --- Asking a question : 
+              > boolean fileExists("MyFile");
+
+       --- Transforming the input :
+              > InputStream fileOpen("MyFile");
+
+
+Criticism about flag arguments : 
+  > Author says : "Flag arguments are ugly. Passing a boolean into a function is a truly terrible practice"
+-- render(true)
+-- render(false)
+These do completely different things depending on the flag.
+This violates “do one thing”
+
+Author is telling that instead of using one function and using flags we can use a alternative approach such
+as using two functions like this :: 
+     > renderForSuite()
+     > renderForSingleTest()
+
+-Dyadic and triads functions are harder to understand (  2 & 3 arguments ) 
+-We need to use Verb+Keyword naming rather than dummy namings for functions 
+-A function should do what it promises and nothing more 
+-Functions should do something or answer something but not both ( combination of bad and good function in one )
+-prefer exceptions than writing error codes 
+-Functions = verbs ,  Classes = nouns  ( a code base should be read like story )
