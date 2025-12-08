@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #eef1f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.filter-buttons {
+    margin-top: 15px;
+}
+
+.filter-buttons button {
+    padding: 8px 15px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.filter-buttons button:hover {
+    background-color: #2980b9;
+}
+
+
+.repo-input-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.repo-input-box input {
+    padding: 10px;
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+}
+
+.repo-input-box button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.search-box {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#searchBox {
+    padding: 10px;
+    width: 350px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    font-size: 16px;
+}
+
+.issue-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Color coding */
+.issue-card.open {
+    border-left: 10px solid #27ae60; /* GREEN */
+}
+
+.issue-card.closed {
+    border-left: 10px solid #c0392b; /* RED */
+}
+
+hr {
+    margin: 15px 0;
+}
+
+/* Chart styling */
+#chartBox {
+    text-align: center;
+    margin: 30px auto;
+    width: fit-content;
+}
+
+#chart {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bar {
+    height: 25px;
+    background: #3498db;
+    color: white;
+    line-height: 25px;
+    border-radius: 5px;
+    transition: width 0.5s;
+    padding-left: 10px;
+}
+
+#closedBar {
+    background: #c0392b;
+}

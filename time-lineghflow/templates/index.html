@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Issue Timeline Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>GitHub Issue Timeline Dashboard</h1>
+
+<div class="repo-input-box">
+    <input id="repoInput" type="text" placeholder="Paste GitHub repo URL (e.g. https://github.com/user/repo)">
+    <button onclick="loadRepo()">Load Issues</button>
+</div>
+
+
+<div class="search-box">
+    <input id="searchBox" type="text" placeholder="Search issues..." onkeyup="filterIssues()">
+
+    <div class="filter-buttons">
+        <button onclick="showAll()">All</button>
+        <button onclick="showOpen()">Open</button>
+        <button onclick="showClosed()">Closed</button>
+    </div>
+</div>
+
+
+<div id="chartBox">
+    <h3>Issue Status Overview</h3>
+    <div id="chart">
+        <div id="openBar" class="bar"></div>
+        <div id="closedBar" class="bar"></div>
+    </div>
+</div>
+
+<div id="issues-container">
+    <p>Loading issues...</p>
+</div>
+
+<script>
+let allIssues = [];
+
+async function loadIssues() {
+    const res = await fetch("/issues");
+    allIssues = await res.json();
+
+    renderChart();
+    renderIssues(allIssues);
+}
+
+function renderChart() {
+    const openCount = allIssues.filter(i => i.closed_at === null).length;
+    const closedCount = allIssues.filter(i => i.closed_at !== null).length;
+
+    const max = Math.max(openCount, closedCount) || 1;
+
+    document.getElementById("openBar").style.width = (openCount / max * 400) + "px";
+    document.getElementById("closedBar").style.width = (closedCount / max * 400) + "px";
+
+    document.getElementById("openBar").textContent = `Open: ${openCount}`;
+    document.getElementById("closedBar").textContent = `Closed: ${closedCount}`;
+}
+
+function renderIssues(issues) {
+    const container = document.getElementById("issues-container");
+    container.innerHTML = "";
+
+    issues.forEach(issue => {
+        const card = document.createElement("div");
+        card.className = "issue-card " + (issue.closed_at ? "closed" : "open");
+
+        card.innerHTML = `
+            <h2>#${issue.number} — ${issue.title}</h2>
+
+            <p><strong>Assignees:</strong> ${issue.assignees.join(", ") || "None"}</p>
+            <p><strong>Labels:</strong> ${issue.labels.join(", ") || "None"}</p>
+
+            <p><strong>Created:</strong> ${issue.created_at}</p>
+            <p><strong>Updated:</strong> ${issue.updated_at}</p>
+            <p><strong>Closed:</strong> ${issue.closed_at || "Not closed"}</p>
+
+            <hr>
+
+            <p><strong>Time Since Creation:</strong> ${issue.time_since_creation_hours} hours</p>
+            <p><strong>Time Since Last Update:</strong> ${issue.time_since_update_hours} hours</p>
+            <p><strong>Time Open:</strong> ${issue.time_open_hours} hours</p>
+            <p><strong>Time Since Assignment:</strong> ${issue.time_since_assignment_hours || "N/A"} hours</p>
+
+            <h3>Assignment Timeline:</h3>
+            <ul>
+                ${issue.assignment_history.map(a => `
+                    <li>${a.user} → Assigned at ${a.assigned_at}</li>
+                `).join("")}
+            </ul>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function filterIssues() {
+    const search = document.getElementById("searchBox").value.toLowerCase();
+
+    const filtered = allIssues.filter(issue => 
+        issue.title.toLowerCase().includes(search) ||
+        issue.assignees.join(" ").toLowerCase().includes(search)
+    );
+
+    renderIssues(filtered);
+    renderChart();
+}
+
+// FILTER BUTTONS
+function showAll() {
+    renderIssues(allIssues);
+}
+
+function showOpen() {
+    const openIssues = allIssues.filter(i => i.closed_at === null);
+    renderIssues(openIssues);
+}
+
+function showClosed() {
+    const closedIssues = allIssues.filter(i => i.closed_at !== null);
+    renderIssues(closedIssues);
+}
+
+function parseRepoUrl(url) {
+    // Example: https://github.com/user/repo
+    try {
+        const parts = url.replace("https://github.com/", "").split("/");
+        return { owner: parts[0], repo: parts[1] };
+    } catch (e) {
+        alert("Invalid GitHub URL");
+        return null;
+    }
+}
+
+async function loadRepo() {
+    const url = document.getElementById("repoInput").value;
+    const repo = parseRepoUrl(url);
+
+    if (!repo) return;
+
+    const res = await fetch(`/issues?owner=${repo.owner}&repo=${repo.repo}`);
+    allIssues = await res.json();
+
+    renderChart();
+    renderIssues(allIssues);
+}
+
+
+loadIssues();
+</script>
+
+
+</body>
+</html>

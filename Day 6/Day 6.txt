@@ -1,0 +1,47 @@
+A good comment helps
+A bad / unnecessary comment clutters the code
+Old comments become dangerous because they lie
+
+Comments are not “good by default.” They are a necessary evil
+
+If you feel the need to write a comment → it's usually a failure to express intent in code
+
+The code will always be the only true source of information.
+Comments become outdated, drift away, lose accuracy
+
+
+Good Comments (rare)
+
+>Legal requirements — copyrights, license notes, etc.
+
+>Informative comments — when the code cannot say something directly.
+
+>Intent comments — explain why something is done, not what.
+
+>Clarification — only when dealing with confusing library calls or weird format strings.
+
+>Warning comments — “don’t run this unless you have time to kill.”
+
+>TODO comments — reminders for future work, not excuses for leaving bad code.
+
+
+
+Bad Comments (most of them)
+
+>Comments written to cover up bad code — fix the code instead.
+
+>Redundant comments — say exactly what the code already shows.
+
+>Misleading comments — when the code and comment disagree slightly (worst kind).
+
+>Mandated comments — pointless required Javadocs for every variable/method.
+
+>Journal comments — old change logs inside files (Git already does this).
+
+>Noise comments — “default constructor,” “returns day of month,” etc.
+
+
+Code should speak for itself.
+Every comment should be treated with suspicion.
+Write comments only when the code truly cannot express the idea.
+Clean code > commented messy code.

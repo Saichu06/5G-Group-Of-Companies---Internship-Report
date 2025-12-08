@@ -1,54 +1,62 @@
 import requests
+from datetime import datetime, timezone
 from config import GITHUB_TOKEN, OWNER, REPO
 
-from datetime import datetime, timezone
 
 def hours_between(t1, t2=None):
     """Return hours between two timestamps"""
     if t1 is None:
         return None
 
-    # Convert string → datetime object
+    # Convert string → datetime
     t1 = datetime.fromisoformat(t1.replace("Z", "+00:00"))
 
-    if t2 is None:
+    if t2:
+        t2 = datetime.fromisoformat(t2.replace("Z", "+00:00"))
+    else:
         t2 = datetime.now(timezone.utc)
 
     return round((t2 - t1).total_seconds() / 3600, 2)
 
 
-BASE_URL = f"https://api.github.com/repos/{OWNER}/{REPO}"
+def fetch_issues(owner=None, repo=None):
+    """Fetch ALL issues including closed ones from any repo"""
+    owner = owner or OWNER
+    repo = repo or REPO
 
-HEADERS = {
-    "Authorization": f"Bearer {GITHUB_TOKEN}",
-    "Accept": "application/vnd.github+json"
-}
+    url = f"https://api.github.com/repos/{owner}/{repo}/issues?state=all"
+    response = requests.get(url, headers={
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    })
 
-
-def fetch_issues():
-    """Fetch all issues from the GitHub repo"""
-    url = f"{BASE_URL}/issues"
-    response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-def fetch_issue_events(issue_number):
-    """Fetch events (assignment timeline, labels, close/open activity)"""
-    url = f"{BASE_URL}/issues/{issue_number}/events"
-    response = requests.get(url, headers=HEADERS)
+def fetch_issue_events(issue_number, owner=None, repo=None):
+    """Fetch assignment and activity events"""
+    owner = owner or OWNER
+    repo = repo or REPO
+
+    url = f"https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}/events"
+    response = requests.get(url, headers={
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    })
+
     return response.json()
 
 
-
-def parse_issue(issue):
+def parse_issue(issue, owner=None, repo=None):
     issue_number = issue["number"]
-    events = fetch_issue_events(issue_number)
+    events = fetch_issue_events(issue_number, owner, repo)
 
     created = issue.get("created_at")
     updated = issue.get("updated_at")
     closed = issue.get("closed_at")
 
     assignees = [a["login"] for a in issue.get("assignees", [])]
+    labels = [label["name"] for label in issue.get("labels", [])]
 
     assignment_history = []
     last_assignment_time = None
@@ -75,9 +83,9 @@ def parse_issue(issue):
         "updated_at": updated,
         "closed_at": closed,
         "assignees": assignees,
+        "labels": labels,
         "assignment_history": assignment_history,
 
-        # NEW TIMELINE FIELDS
         "time_since_creation_hours": time_since_creation,
         "time_since_update_hours": time_since_update,
         "time_open_hours": time_open_hours,
