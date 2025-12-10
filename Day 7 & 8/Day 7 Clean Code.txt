@@ -1,0 +1,46 @@
+Chapter 5 Formatting :: 
+
+ >> Author explains that we need look at a cook first/someone looks at
+ the code, they need to be impressed by the : 
+     -> Neatness , Consistency and Attention to detail
+
+>> Clean Formatting : Professionalism
+>> Messy Formatting : Sloppy Engineering
+>> People judge the quality of the project by who we wrote the code/cleanliness of it
+>> Code Formatting is for communication : how well we communicate to someone who is making the 
+change in code or just reading it. If we are able get the meaning of the code to their head and 
+if they are impressed with the way wrote it.
+>> Good Formatting does not refer to beauty but to clarity and communication 
+
+
+>> A team must agree on one formatting format and using tools to format helps to maintain consistency
+ex : in vs code there are many formatting tools like prettier ( which i use ) 
+
+>> The answer to how big the file should be -- the smaller the better ( understanding wise ) 
+
+
+Author explains using an example of a newspaper and how its formatted :  
+ >> top -- Headline 
+ >> first para -- High Level Summary
+ >> middle and bottom -- More Details 
+
+>> Using this in code ?  
+  -- Top - classes , functions , big ideas 
+  -- Middle - Detailed Logic 
+  -- Bottom - Low level helpers 
+
+
+
+>> Vertical Openess:: 
+   -- Spacing between each lines
+   -- examples explained with listing 5-1 AND 5-2  ( saw the code ) 
+
+>> Vertical Density :: 
+   -- Use dense lines when things belong tightly together 
+   -- Some long comments break the conceptual unity 
+
+>> Author also explains dependent functions must be close ( vertically ) 
+>> The constant could have been buried in a lower function,
+but it makes more sense at the higher level where the flow of logic is clearer
+>> Some functions belong together not because one calls the other, but because they share meaning or behavior
+

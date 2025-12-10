@@ -1,0 +1,25 @@
+JSON TO Excel : 
+
+
+Steps : 
+
+1) Installing Openpyxl : 
+>> py -m pip install openpyxl
+>> py -m pip show openpyxl
+
+2) Load the data in terms of json 
+
+3) Create a workbook 
+  >> Creates a new excel file in memory 
+  >> ws = wb.active - to select the first sheet
+  >> add a title with .title
+
+4) now extract all the headers for the column title for the excel : 
+  >> headers=list(data[0].keys()) 
+  >> append it to the ws
+
+5) Writing each row 
+  >> for item in data: 
+        row=[item[key] for key in headers]
+        ws.append(row)
+6) Save the file with wb.save(" name " )
