@@ -63,7 +63,8 @@ def parse_issue(issue):
         "iid": issue["iid"],
         "title": issue["title"],
         "state": issue["state"],
-        "assignee": issue["assignee"]["username"] if issue.get("assignee") else None,
+        "assignee": issue["assignee"][
+            "username"] if issue.get("assignee") else None,
         "estimate_seconds": time_stats.get("time_estimate", 0),
         "spent_seconds": time_stats.get("total_time_spent", 0),
         "estimate_hours": round(time_stats.get("time_estimate", 0) / 3600, 2),
@@ -83,23 +84,6 @@ def get_time_report():
     return parsed
 
 
-def get_issue(iid):
-    url = f"{BASE_URL}/projects/{PROJECT_ID}/issues/{iid}"
-    headers = {"Private-Token": GITLAB_TOKEN}
-
-    response = requests.get(url, headers=headers, verify=False)
-    return response.json()
-
-
-def track_issue(iid):
-    issue = get_issue(iid)
-    parsed = parse_issue(issue)
-    return parsed
-
-
-
 if __name__ == "__main__":
-    iid = int(input("Enter Issue IID to track: "))
-    result = track_issue(iid)
-    print(result)
-
+    report = get_time_report()
+    print(report)
