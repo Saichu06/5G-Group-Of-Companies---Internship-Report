@@ -1,0 +1,171 @@
+>> Chapter 6 - Objects and Data Structures 
+
+
+-- He begins with a questions : Why do we keep variables private if we just expose them again through getters and setters?
+ >> Private variables protect your ability to change implementations freely
+ >> Adding getters/setters re-exposes the variables -> defeating the purpose of encapsulation
+
+The Problem :
+ > Programmers often hide fields behind getters/setters
+ > BUT
+ Still expose the same data structure anyway
+
+
+-- Data Abstraction
+Concrete vs Abstract Point
+
+Listing 6-1 (Concrete – BAD)
+Exposes implementation details
+Forces manipulation of x and y independently
+Even with getters/setters → still exposes representation
+
+Listing 6-2 (Abstract – GOOD)
+Hides how the data is stored (rectangular/polar/anything)
+Only exposes meaningful operations (getR, getTheta, setPolar)
+Enforces atomic updates (must set both coords together)
+True abstraction = exposing the essence, not the structure
+
+Key Idea:
+
+Hiding implementation is not just adding getters/setters
+It requires thoughtful abstract interfaces
+
+-- Concrete vs Abstract Vehicle
+
+Concrete Vehicle (BAD)
+Talks in gallons and tank size → exposes underlying details
+Clearly just exposing fields
+
+Abstract Vehicle (GOOD)
+getPercentFuelRemaining() hides representation
+Only exposes what actually matters
+
+Conclusion:
+
+Express data in abstract terms
+Worst option = blindly adding getters/setters
+
+-- Data/Object Anti-Symmetry
+
+Objects:
+Hide data
+Expose behavior that operates on that data
+
+Data Structures:
+Expose data
+Have no meaningful behavior
+
+They are opposites.
+
+-- Procedural Shapes (Data Structures)
+
+Listing 6-5 (Procedural)
+Shapes contain public data only
+Geometry class holds all behavior
+Easy to add new functions (area, perimeter)
+Hard to add new shapes (must modify ALL functions)
+
+-- OO Shapes (Polymorphic Objects)
+
+Listing 6-6 (OO)
+Each shape has its own area()
+No need for instanceof
+Easy to add new shapes
+Hard to add new functions (must modify all classes)
+
+-- The Fundamental Dichotomy
+
+Procedural code:
+Easy to add new functions
+Hard to add new data types
+
+OO code:
+Easy to add new data types
+Hard to add new functions
+
+Mature developers choose based on the needs of the system.
+
+-- The Law of Demeter (LOD)
+
+A method should only call:
+Methods of itself
+Methods of objects it creates
+Methods of objects passed to it
+Methods of its own instance variables
+
+Should NOT call:
+Methods on the result of another call
+(No train wrecks like a.b().c().d())
+
+-- Train Wrecks
+
+Example:
+
+ctxt.getOptions().getScratchDir().getAbsolutePath()
+
+
+Deep navigation → too much knowledge of structure
+Breaks encapsulation
+Hard to maintain
+
+Fix:
+
+Split into locals
+OR redesign abstraction to avoid needing to navigate internals
+
+-- Hybrids (AVOID these)
+
+Classes that:
+Have behavior and expose internal data (through accessors)
+Are half object / half data structure
+Worst of both worlds
+
+-- Hiding Structure
+
+If ctxt, options, scratchDir are OBJECTS:
+They should not expose chains of internals
+Instead: tell them what to DO
+
+Better design example:
+
+BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);
+
+
+Object does the work
+Caller doesn’t navigate internals
+Obeys Law of Demeter
+
+-- DTOs (Data Transfer Objects)
+
+Pure data structures:
+Public fields
+No behavior
+Used for transferring raw data (DB, network, serialization)
+
+-- Beans
+
+Getter/setter style DTOs:
+Private fields but public accessors
+Still essentially data structures
+“Pseudo-encapsulation” that adds little value
+
+-- Active Record
+
+DTO + persistence methods (save, find)
+Should remain data structures
+Business rules belong in separate objects
+Do NOT mix business logic into Active Record
+
+-- Conclusion
+
+Objects:
+Hide data
+Expose behavior
+Good when we add new data types
+
+Data Structures:
+Expose data
+No significant behavior
+Good when we add new behaviors
+
+Good developers avoid bias and choose the right tool for the job
