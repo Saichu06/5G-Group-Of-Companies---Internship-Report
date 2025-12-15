@@ -1,8 +1,9 @@
 import requests
 import urllib3
+from config import GITLAB_TOKEN, PROJECT_ID
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-from config import GITLAB_TOKEN, PROJECT_ID
 
 GITLAB_URL = "https://git.fifthgentech.com"
 BASE_URL = f"{GITLAB_URL}/api/v4"
@@ -24,7 +25,11 @@ def get_issues():
         }
 
         print(f"Fetching page {page}...")
-        response = requests.get(url, headers=headers, params=params, verify=False)
+        response = requests.get(
+            url,
+            headers=headers,
+            params=params,verify=False,
+            timeout=30)
         data = response.json()
 
         if not data:
@@ -41,7 +46,7 @@ def get_spend_events(issue_iid):
     url = f"{BASE_URL}/projects/{PROJECT_ID}/issues/{issue_iid}/notes"
     headers = {"Private-Token": GITLAB_TOKEN}
 
-    response = requests.get(url, headers=headers, verify=False)
+    response = requests.get(url, headers=headers, verify=False,timeout=30)
     notes = response.json()
 
     events = []
