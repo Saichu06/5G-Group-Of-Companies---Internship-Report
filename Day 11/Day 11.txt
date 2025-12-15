@@ -1,0 +1,69 @@
+DAY 11 - Internship Report 
+
+
+>> Questions to be answered: 
+
+  -- Automatic run of the service 
+  -- Multithreading vs Async 
+  -- Why we cant keep the fetch count ( threading ) to 100 or more based on our data. 
+
+
+
+>>> Outputs : 
+
+
+-- One liner - Multithreading overlaps work by blocking OS threads and letting the OS switch them; async overlaps work by yielding tasks and letting an event loop switch them
+
+-- Memory -- Multithreading uses memory in MB ( 1 - 8 ) as even the waiting tasks also use threads. Whereas async's waiting process does not use any resource and the memory is used in KB ( per task ). 
+
+-- Context Switching -- Context switching in multithreading is very expensive as the OS Scheduler schedules the task based on the availability and blocks the thread which is being switched from. In async the process is very less expensive/cheap 
+
+-- Note : Threads are OS level entities whereas the tasks are python level objects/functions. 
+
+-- Behavior : In multithreading the behavior is not predictable as its decided by the os, as it decided when to pause and resume threads. Whereas in the async , python decides when to pause and resume.
+
+-- Scheduling : Multithreading is preemptive ( can interrupt a thread at anytime ) , thread does not control when it pauses. In async tasks pauses only at await and it must voluntarily yield control.
+
+
+
+Now...why cant our normal thread pool cannot do more than 1000 -- 
+
+Core reason : > Thread pools scale by adding OS threads (heavy); async scales by adding tasks (light) 
+
+
+
+What my program did : ~2 MB per thread × 1000 = 2 GB RAM
+
+
+> Context switching
+
+ - OS constantly swaps threads
+ - CPU spends more time switching than doing work
+
+> OS limits
+
+- Max threads per process
+- Max open sockets
+- Max file descriptors
+
+
+
+What async does : 1 issue = 1 coroutine (task)
+
+>Each task:
+ - A few KB
+ - No OS thread
+ - No blocking
+
+> 1000 tasks:
+
+ - Still one OS thread
+ - Minimal memory
+ - No scheduler overhead
+
+
+One more takeaway : 
+> Threads is not free 
+> More threads will make the service slower overall  
+> Async does not have this problem 
+> Waiting threads are expensive and waiting async tasks are cheap

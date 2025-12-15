@@ -1,0 +1,71 @@
+--- What Are Boundaries???? ---
+
+ > We rarely control all the software in our systems.
+
+- We use third-party libraries
+- We depend on open source
+- We rely on other internal teams
+- Somehow this foreign code must integrate cleanly
+
+Goal: Keep boundaries between our code and their code clean
+
+Using third party code : The Tension 
+> Providers want broad, flexible interfaces
+> Users want focused, application-specific interfaces
+> This mismatch creates boundary problems
+
+Map: ( java.util.map -- i use a lot)
+> Map has a very broad interface
+> Includes methods we may not want (clear, remove, putAll)
+> Does not constrain value types reliably
+
+
+BAD MAP USAGE : 
+
+Map sensors = new HashMap();
+Sensor s = (Sensor) sensors.get(id);
+
+WHY?
+>Repeated casting everywhere
+>Clients must remember types
+>Code does not tell a clear story
+>Readability suffers
+
+> Passing Map through the system spreads the boundary
+> Encapsulating the Boundary (GOOD)
+ > Map is hidden inside the class
+ > Generics become an implementation detail
+ > Casting handled in one place
+
+
+Exploring Boundaries : 
+> Using third-party code is hard.
+> Learning the API is hard
+> Integrating it at the same time is harder
+
+
+Adaptor Pattern: 
+> Write an Adapter
+> Bridge our interface to their API
+> All change isolated in one place
+
+
+Benefits: 
+> Client code stays clean
+> Boundary changes affect one class
+> Easier testing (FakeTransmitter)
+> Clear seam for unit tests
+
+Boundaries are where change happens ( clean boundaries )
+
+
+Final Boundary Principles: 
+
+> Hide third-party interfaces
+> Encapsulate boundaries
+> Use adapters and wrappers
+> Write learning tests
+> Write boundary tests
+> Minimize dependency spread
+
+Finally the author explains why is this effective : Clean boundaries -> low maintenance -> controlled change
