@@ -20,6 +20,8 @@ TIMEOUT = 20
 MAX_WORKERS = 8
 
 
+#filtering last 7 days with the formula 7-now
+
 def get_recent_issues(days=7):
     updated_after = (datetime.utcnow() - timedelta(days=days)).isoformat() + "Z"
     url = f"{BASE_URL}/projects/{PROJECT_ID}/issues"
@@ -33,8 +35,8 @@ def get_recent_issues(days=7):
             "page": page,
             "updated_after": updated_after
         }
-
         response = requests.get(
+
             url,
             headers=HEADERS,
             params=params,
@@ -54,6 +56,7 @@ def get_recent_issues(days=7):
     return all_issues
 
 
+#to fetch time tracking entries
 def get_spend_events(issue_iid):
     url = f"{BASE_URL}/projects/{PROJECT_ID}/issues/{issue_iid}/notes"
 
@@ -95,7 +98,7 @@ def collect_time_logs(issues):
     return all_logs
 
 
-
+#generating log based on fetched issues/log
 def generate_time_log_report(days=7):
     issues = get_recent_issues(days)
     print(f"Recent issues fetched: {len(issues)}")
