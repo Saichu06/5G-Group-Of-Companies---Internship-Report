@@ -1,0 +1,44 @@
+DAY 12 Internship Report :) 
+
+
+>Task for the day : 
+  -- Comparing the time complexity  between using async and threading 
+  -- usage of config.py vs settings.py 
+  -- how to automatically run the program given a particular time -- ( refreshing the data ) 
+  -- Implementing async in my current service program  
+
+
+1. Comparing : 
+  > The reuse-ability of a thread provided by async comes as an advantage where it saves a lot of 
+    time when compared to threading , as they create a new thread for whatever process to have made 
+    to wait and currently running. 
+  > Generally time complexity of both the methods is O(n)
+
+
+Time took for previous programs : 
+
+> Without threading : 30 seconds 
+> With Threading-pool : 6 seconds 
+> Next is to improve this more with Async. 
+
+
+
+2. Usage of config.py vs settings.py 
+
+
+Config.py :: 
+
+> Used for an environmental specific and external usage
+> What goes on here : Values that change between environments and should not affect logic 
+> Used to store secret and sensitive info ( like my project id and url )
+
+Settings.py :: 
+
+> What goes on here : Values that define how the app behaves, not where it runs
+
+
+Purpose ::
+> Config.py -> Environment configuration ( tokens & ids )
+> Settings.py -> App behavior 
+> config.py answers “where & with what” : settings.py answers “how”
+

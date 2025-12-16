@@ -1,13 +1,12 @@
 # pylint: disable=no-name-in-module
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta , timezone
 from concurrent.futures import ThreadPoolExecutor
-
 import requests
 import urllib3
-
 from config import GITLAB_TOKEN, PROJECT_ID
 
+IST = timezone(timedelta(hours=5, minutes=30))
 
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -73,14 +72,23 @@ def get_spend_events(issue_iid):
     events = []
     for note in notes:
         if note.get("system") and "time spent" in note["body"].lower():
+
+            # Convert UTC → IST
+            utc_time = datetime.fromisoformat(
+                note["created_at"].replace("Z", "+00:00")
+            )
+            ist_time = utc_time.astimezone(IST)
+
             events.append({
-                "issue_iid": issue_iid,
-                "user": note["author"]["username"],
-                "message": note["body"],
-                "created_at": note["created_at"]
-            })
+    "issue_iid": issue_iid,
+    "user": note["author"]["username"],
+    "message": note["body"],
+    "created_at_ist": ist_time.strftime("%Y-%m-%d %H:%M:%S")
+})
+
 
     return events
+
 
 
 def collect_time_logs(issues):

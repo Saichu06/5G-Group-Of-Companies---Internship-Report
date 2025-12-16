@@ -57,7 +57,7 @@ def export_time_logs(logs, file_name="gitlab_time_logs.xlsx"):
             log["issue_iid"],
             log["user"],
             log["message"],
-            log["created_at"]
+            log["created_at_ist"]
         ])
 
     wb.save(file_name)
