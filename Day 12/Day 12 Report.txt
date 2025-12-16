@@ -42,3 +42,12 @@ Purpose ::
 > Settings.py -> App behavior 
 > config.py answers “where & with what” : settings.py answers “how”
 
+
+
+3. Automatically Running the program everyday - ( ex 6 am )
+
+Windows Task Scheduler --- for powershell and windows -- .bat file -- by clicking on that file we will get all data we need
+
+
+>> for the file to run it automatically by giving a specific time : task scheduler  
+

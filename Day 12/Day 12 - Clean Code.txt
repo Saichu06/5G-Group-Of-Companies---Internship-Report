@@ -1,0 +1,91 @@
+Day 12 - Clean Code :
+
+
+
+How Testing Used to Be
+
+-- In the past, unit tests were throwaway code.
+
+> Tests written after production code
+> Manual driver programs
+> Keyboard-based or visual verification
+> Tests deleted after “it works”
+
+
+Author’s example:
+
+> Timer tested by typing dots
+> Waiting 5 seconds
+> Watching output replay
+> Test thrown away afterward
+
+
+How Testing Should Be Done Today:
+
+> Modern testing is automated, isolated, and permanent.
+
+- Use mocks instead of real OS dependencies
+- Control time instead of waiting
+- Verify behavior with assertions
+- Tests checked into source control
+- Tests evolve with production code
+
+
+> Uncle bob also mentions that We’ve Improved — But Not Enough
+
+> Agile & TDD increased testing adoption.
+
+> Many programmers now write automated tests.....BUT many miss what makes tests good
+
+
+
+-- The Three Laws of TDD --
+
+> TDD is not just “tests first”.
+
+> First Law
+
+-- You may not write production code until you have a failing test
+
+> Second Law
+
+-- You may not write more test code than is sufficient to fail
+Not compiling = failing
+
+> Third Law
+
+-- You may not write more production code than is sufficient to pass the failing test
+
+
+why testing?...
+
+> Keeping Tests Clean
+
+-- A team decided test code quality didn’t matter.
+
+> “Quick and dirty” philosophy
+-- Poor naming
+-- Long, messy tests
+-- No design discipline
+
+
+
+> The Core Lesson -- > Test code is not second-class code.
+
+> Tests require design
+> Tests require care
+> Tests must be clean
+> Dirty tests destroy productivity
+
+What makes a clean test? == readability 
+
+
+
+--- Final Takeaway ---
+
+> Tests are code.
+
+- They must be clean
+- They must be readable
+- They must evolve
+- They protect architecture
