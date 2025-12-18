@@ -1,0 +1,47 @@
+Day 13 - Internship Report 
+
+> Label Creator CLI  - ( For Issues ) -- GitLab Project 
+
+ 
+Flow of the project: 
+
+1. Start the program
+
+2. Read config (token, project_id)
+ 
+3. Ask user for:
+   - Issue IID
+   - Label name
+   - Label color (optional)
+   - Description (optional)
+   
+4. Validate inputs
+   
+5. Check / create label in GitLab
+   
+6. Attach label to issue
+   
+7. Show result to user
+
+8. END
+
+
+Control Flow : 
+
+>> Config - if it fails , whole program will fail 
+>> User input phase - ( via terminal ) - Issue ID, label name , label color ( optional ) , description ( optional )
+>> Input Validation - 
+    >> Id Integer
+    >> Label name not empty 
+>> Label uniqueness - To make sure same label is not created ( skip if already exists ) 
+>> GitLab API to add the label 
+>> Based on creation or issue output will be given 
+
+
+Files Required : 
+>> Config -- for tokens and projects id 
+>> service -- to fetch data and do the internal work ( api calls ) 
+>> input handler -- for user input and validation 
+>> main -- for the control flow to execute 
+
+

@@ -1,0 +1,98 @@
+Day 13 -- Clean Code Progress 
+
+
+Lesson :: Classes 
+
+> Clean code is not only about clean lines and functions
+> Even expressive functions don’t guarantee clean code
+> Higher-level organization matters
+> Classes are the next level of cleanliness
+
+> Class Organization/structure 
+-- > Public static constants first
+-- > Private static variables next
+-- > Private instance variables next
+-- > Public methods after variables
+-- > Private helper methods immediately after the public method that uses them
+
+Encapsulation : 
+
+> Author says Prefer strong encapsulation, but don’t be dogmatic ( dont stick to principles ) 
+
+
+- Classes Should Be Small
+
+> First rule: classes should be small
+> Second rule: classes should be smaller than that
+
+
+- The 25-Word Test
+
+- Describe a class in <=25 words.
+
+Without using: if , and , or ,  but
+
+
+
+> Single Responsibility Principle (SRP)
+
+- A class should have one and only one reason to change
+> SRP defines responsibility & class size 
+
+
+> Why SRP Is Violated So Often
+
+Because we stop once code works.
+
+Getting code to work is not equal making it clean
+Developers move on too early
+Organization is postponed (and forgotten)
+
+
+> what do we actually want? 
+
+- A system composed of:
+
+> Many small classes
+> Each with one responsibility
+> Each collaborating with others
+> Each easy to understand in isolation
+
+
+
+-- Cohesion --
+ 
+> Classes should be cohesive.
+> Few instance variables
+> Methods use those variables
+> High overlap = high cohesion
+
+> High Cohesion Means == Methods and variables belong together
+
+
+-- Loss of Cohesion (Design Smell) --
+
+> When cohesion drops → it’s a warning sign
+
+> Some methods use only some variables
+
+> Instance variables exist just to share data
+
+> Class is trying to do more than one thing
+
+
+
+--- Managing Complexity ---
+
+Big systems are unavoidable < Good design organizes complexity
+
+Many small classes - Clear responsibilities - Easy to find where logic lives - Understand only what you’re working on - Small classes reduce mental load
+
+
+> Refactoring Is Not Rewriting....
+
+> Clean classes emerge through refactoring
+> Same behavior
+> Same algorithm
+> Verified by tests
+--- Small steps, one change at a time
