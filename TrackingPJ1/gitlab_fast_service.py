@@ -1,10 +1,17 @@
 # pylint: disable=no-name-in-module
-
-from datetime import datetime, timedelta , timezone
+import time
+from datetime import datetime, timedelta, timezone
 from concurrent.futures import ThreadPoolExecutor
 import requests
 import urllib3
+from requests.exceptions import RequestException
+
+# Local
 from config import GITLAB_TOKEN, PROJECT_ID
+
+
+MAX_RETRIES=3
+RETRY_DELAY=2
 
 IST = timezone(timedelta(hours=5, minutes=30))
 
@@ -59,35 +66,53 @@ def get_recent_issues(days=7):
 def get_spend_events(issue_iid):
     url = f"{BASE_URL}/projects/{PROJECT_ID}/issues/{issue_iid}/notes"
 
-    response = requests.get(
-        url,
-        headers=HEADERS,
-        verify=False,
-        timeout=TIMEOUT
-    )
-
-    response.raise_for_status()
+    response = safe_get(url)
     notes = response.json()
 
     events = []
     for note in notes:
         if note.get("system") and "time spent" in note["body"].lower():
 
-            # Convert UTC → IST
             utc_time = datetime.fromisoformat(
                 note["created_at"].replace("Z", "+00:00")
             )
             ist_time = utc_time.astimezone(IST)
 
             events.append({
-    "issue_iid": issue_iid,
-    "user": note["author"]["username"],
-    "message": note["body"],
-    "created_at_ist": ist_time.strftime("%Y-%m-%d %H:%M:%S")
-})
-
+                "issue_iid": issue_iid,
+                "user": note["author"]["username"],
+                "message": note["body"],
+                "created_at_ist": ist_time.strftime("%Y-%m-%d %H:%M:%S")
+            })
 
     return events
+
+
+def safe_get(url, params=None):
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            response = requests.get(
+                url,
+                headers=HEADERS,
+                params=params,
+                verify=False,
+                timeout=TIMEOUT
+            )
+            response.raise_for_status()
+            return response
+
+        except RequestException as exc:
+            if attempt == MAX_RETRIES:
+                raise  # final failure
+
+            wait_time = RETRY_DELAY * attempt
+            print(
+                f"[Retry {attempt}/{MAX_RETRIES}] "
+                f"Error: {exc}. Retrying in {wait_time}s..."
+            )
+            time.sleep(wait_time)
+    raise RuntimeError("safe_get() exited retry loop unexpectedly")
+
 
 
 
