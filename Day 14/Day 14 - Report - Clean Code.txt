@@ -1,0 +1,83 @@
+Day 14 - Report - Clean Code 
+
+Chapter 10 - Classes
+
+> Organizing for Change
+ - Change is constant
+ - Every change introduces risk
+ - Clean systems reduce change impact
+
+> Opening a class = risk
+ - Modifying existing code requires full retesting
+
+
+> Design Rule for Change
+
+- If a class is complete -> leave it alone
+- If you must open it -> reconsider the design
+
+
+> Refactored Design (Closed for Modification)
+
+- Solution:
+
+: Split each SQL statement into its own class
+: Use inheritance + polymorphism
+
+- Result:
+-- One SQL type = one class
+-- Shared logic extracted into helpers
+
+
+> Open–Closed Principle (OCP)
+
+> Classes should be:
+-- Open for extension
+-- Closed for modification
+
+> New behavior:
+- Add new classes
+- Do NOT change existing ones
+
+
+> Goal of Clean Design
+
+- When adding features:
+> Extend the system
+> Don’t modify existing code
+> Touch as little code as possible
+> Reduce ripple effects
+
+
+> Isolating from Change
+
+- Needs will change
+- Concrete details change more often than abstractions
+
+
+> Use Abstractions to Isolate Change
+
+- Depend on interfaces, not implementations
+- Instead of:
+-> Portfolio → TokyoStockExchange
+- Use:
+-> Portfolio → StockExchange (interface)
+
+
+
+> Benefits of This Approach
+
+- Testing becomes easy
+- External volatility removed
+- Behavior becomes predictable
+
+
+
+> Dependency Inversion Principle (DIP)
+
+High-level modules should not depend on low-level modules
+Both should depend on abstractions
+
+Classes should:
+-- Depend on interfaces
+-- Not concrete details

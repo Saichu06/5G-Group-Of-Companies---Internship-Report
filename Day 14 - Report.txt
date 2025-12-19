@@ -1,2 +1,38 @@
 --- How to run the program automatically in a Linux OS
 --- Executing the label creation project 
+
+
+> Linux uses 'cron' as default scheduler 
+> cron - time based job scheduler 
+> cron characteristics : 
+ - Runs without a terminal
+ - Runs without your shell config
+ - Runs with minimal environment variables
+
+> what 'cron' executes : <absolute path to executable> <absolute path to script>
+> as we normally run in cmd - ex: py main.py 
+  > as we dont use a terminal here , we need to specify where the file is present and in which directory 
+  > we must tell - which py , which file and where logs go 
+
+> the scheduling in cron is calendar based , not “At 09:30 every day”
+> we need to specify : minute hour day-of-month month day-of-week
+
+> Cron jobs should be:
+-- deterministic
+-- idempotent (safe if run twice)
+-- independent of manual state
+
+> Add the cron job: 
+
+example : 
+30 9 * * * GITLAB_TOKEN=xxxxx PROJECT_ID=123 \
+/usr/bin/python3 /home/username/label_creation_project/main.py \
+>> /home/username/label_creation_project/cron.log 2>&1
+
+> 30 9 * * * = Time
+> GITLAB_TOKEN=... = Env vars 
+> /usr/bin/python3 = Python executable
+> main.py = Script
+> >> cron.log 2>&1 = Logs + errors
+
+
