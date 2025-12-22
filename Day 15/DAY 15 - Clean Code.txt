@@ -1,0 +1,107 @@
+DAY 15 - Clean Code - Chapter 11 - 'Systems'
+
+
+
+> City Analogy (Big Picture)
+
+- No single person manages a city
+- Cities work due to:
+  
+   -- Separation of concerns
+   -- Clear roles
+   -- Multiple levels of abstraction
+
+- Software systems should work the same way
+
+
+> Separate Construction from Use
+
+-Construction is not equal to Usage
+-Startup logic is not equal to Runtime logic
+
+- Software should:
+
+-- Build objects first -> Then use them
+
+
+> Design Rule
+
+- Never let convenience destroy modularity
+- Startup & wiring should be:
+  
+  > Centralized
+  > Consistent
+  > Separate from runtime logic
+
+
+> Separation of main
+- Move construction to main (or modules called by it)
+
+> Application code:
+- Assumes everything is ready
+
+Knows nothing about construction
+
+
+> Dependency Injection : 
+
+> Benefits of DI
+
+- Easier testing
+- Less coupling
+- SRP preserved
+- Lazy initialization still possible
+
+
+> Aspect-Oriented Programming (AOP)
+
+- AOP restores modularity for cross-cutting concerns
+
+> Aspects:
+
+- Declare where behavior applies
+- Apply behavior non-invasively
+
+
+
+> Java Proxies
+
+- Can wrap method calls dynamically
+
+> Limitations:
+
+- Interface-only (JDK proxies)
+- Complex
+- Verbose
+- Hard to keep code clean
+
+
+
+> AspectJ
+
+- Most powerful AOP tool
+
+> Pros:
+- Rich feature set
+- True aspect language
+> Cons:
+- New syntax
+- Tooling overhead
+
+
+
+> Test-Driven Architecture
+
+- If domain logic is POJO-based:
+
+-- Architecture can be test-driven
+-- Can evolve incrementally 
+-- No Big Design Up Front (BDUF)
+
+
+> Postpone decisions until the last responsible moment -- to get more info and better feedback
+> Standards help when they add value 
+
+> Architecture should not dominate logic
+> Domain intent must stay clear 
+> Separation at all abstraction levels

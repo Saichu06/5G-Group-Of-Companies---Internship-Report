@@ -1,0 +1,24 @@
+Day 15 - Internship Report 
+
+
+>> Label Creation by fetching from Mindshare to Gitlab ( for the week )
+>> Try Catch implementation for the Issues Project 
+>> Clean Code 
+
+
+
+> Why Try–Catch is Necessary
+
+- GitLab operations involve:
+
+ -- Network calls
+ -- Authentication
+ -- External systems
+ -- Rate limits
+
+Any of these can fail....this is where Try–Catch/Exception Handling is Used
+
+
+
+--- API Fetching in postman 
+--- After approval of the issue tracker code , need to start with this project. 
