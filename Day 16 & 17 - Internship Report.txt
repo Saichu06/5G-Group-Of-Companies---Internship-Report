@@ -1,0 +1,13 @@
+Day 16 & 17 - Internship Report 
+
+
+>> There was issues in fetching the api 
+>> Requested for the admin api key access for fetching all the project's details
+>> added a array and functionality to fetch many errors and not only one 
+>> In meantime , i was doing aptitude and dsa questions based on networking 
+
+
+>> On 16th, as Sir was absent i was practicing on writing functions and learning more about AI and Api's 
+>> Mindshare project needed access so i did not progress with it.
+
+>> Project is in completion stage. 

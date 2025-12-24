@@ -1,0 +1,13 @@
+# ---------------- GITLAB CONFIG ----------------
+GITLAB_URL = "http://192.168.17.9:6001/"
+GITLAB_TOKEN = "A-EbTy4vemU_Hfr2DvQv"
+
+PROJECT_IDS = [
+    43,51
+]
+
+LOOKBACK_DAYS = 10
+TIMEOUT = 20
+MAX_RETRIES = 3
+RETRY_DELAY = 2
+MAX_WORKERS = 8

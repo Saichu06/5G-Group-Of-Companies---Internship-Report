@@ -1,0 +1,68 @@
+Clean Code Progress
+
+Chapter - "Emergence" : 
+
+> Core Idea
+
+-- Good design doesn’t have to be planned upfront
+-- Good design can emerge while coding
+-- Following a few simple rules guides better structure
+-- These rules naturally lead to SRP, DIP, low coupling
+
+
+> Kent Beck’s Four Rules of Simple Design
+
+1.Runs all the tests
+2.Contains no duplication
+3.Expresses the intent of the programmer
+4.Minimizes classes and methods
+
+
+> Rule 1..
+  >> A system that can’t be tested can’t be trusted -> Passing tests = system behaves as intended
+  >> Writing tests forces:
+        > Small classes
+        > Single responsibility
+        > Low coupling
+        > High cohesion
+
+
+> Rules 2–4 Happen During Refactoring....
+
+-Once tests exist, fear disappears
+-We can safely refactor anytime
+
+> After adding code:
+-- Pause
+-- Inspect design
+-- Clean it
+-- Run tests
+
+
+> Duplication is the #1 enemy of good design
+> Reuse in the Small >>> Remove tiny duplication -> reveals SRP violations
+> Small reuse enables large reuse
+
+
+> Template Method Pattern
+- Used to remove higher-level duplication
+- > Shared algorithm in base class
+- > Variations filled by subclasses
+
+> How to Be Expressive
+- Use good names
+- Keep functions small
+- Keep classes small
+- Use standard patterns & terminology
+- Write readable tests
+
+> Minimal Classes & Methods (Rule 4)
+- Don’t create tiny classes blindly
+- Don’t follow dogma
+
+> Good design emerges when:
+
+- Tests are written
+- Duplication is removed
+- Code expresses intent
+- Structure is kept minimal
