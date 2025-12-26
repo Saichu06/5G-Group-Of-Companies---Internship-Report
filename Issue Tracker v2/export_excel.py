@@ -2,7 +2,7 @@
 Excel Export Utility for GitLab Time Logs.
 
 Exports ALL GitLab time-spent events (Issues + Merge Requests)
-into a SINGLE Excel sheet with full event details.
+into a SINGLE Excel sheet with numeric time values only.
 """
 
 import openpyxl
@@ -62,5 +62,5 @@ def export_time_logs(events, file_name="gitlab_time_logs.xlsx"):
         ])
 
     wb.save(file_name)
-    print(f"Excel generated successfully → {file_name}")
     wb.close()
+    print(f"Excel generated successfully → {file_name}")
