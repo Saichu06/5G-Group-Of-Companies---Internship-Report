@@ -1,0 +1,101 @@
+Clean Code Day 18 -- Chapter "Concurrency"
+
+
+> Writing clean concurrent code is very hard
+> Single-threaded code is much easier to reason about
+> Concurrency bugs hide and appear only under stress
+> Code may look correct but fail unpredictably
+
+
+> Concurrency decouples what gets done from when it gets done
+> Benefits:
+-- Better throughput
+-- Better responsiveness
+-- Better separation of concerns
+
+> ex : Web Servers & Multi-Server Systems
+
+
+> Myths: 
+Concurrency always improves performance 
+Design doesn’t change with concurrency 
+Containers handle concurrency for you 
+
+Reality: 
+-- Concurrency adds overhead
+-- Correct concurrency is complex
+-- Bugs are rare, non-repeatable, dangerous
+
+
+> The Core Problem
+
+-- Multiple threads + shared data = danger
+
+Even simple code can fail:
+-- Lost updates
+-- Duplicate results
+-- Corrupted state
+
+
+> Single Responsibility Principle (SRP)
+
+Concurrency itself is a reason to change
+Mixing concurrency logic with business logic is a mistake
+
+
+> Shared mutable data causes failures
+
+More shared access means:
+-- More bugs
+-- Harder debugging
+-- DRY violations
+
+
+> Threads Should Be Independent
+
+Each thread should live in its own world
+
+Use:
+-- Local variables
+-- Request-based data
+-- Stateless design
+
+
+
+> Common concurrency patterns:
+-- Producer–Consumer
+-- Readers–Writers
+-- Dining Philosophers
+
+Most real-world problems reduce to these
+
+
+> Locks are expensive ------- > Big synchronized blocks = poor performance
+> Multiple synchronized methods on same object = subtle bugs
+> Testing cannot prove correctness.....but bad testing guarantees failure
+
+
+
+> Force Failures (Jiggling)
+
+Concurrency bugs hide
+Force thread reordering
+
+> Techniques:
+-- sleep()
+-- yield()
+-- Random delays
+-- Automated instrumentation
+
+
+> Concurrency multiplies complexity
+> Clean code becomes mandatory, not optional
+
+> Always:
+-- Separate thread-aware code
+-- Minimize shared data
+-- Keep locking small
+-- Test aggressively
+-- Expect rare failures
+
+------- Clean concurrency is about discipline, not cleverness -------
