@@ -1,0 +1,7 @@
+label_name,color,description
+bug,#FF0000,Defect or unexpected behavior
+enhancement,#1D76DB,New feature or improvement
+priority::high,#D73A4A,High priority tasks
+priority::medium,#FBCA04,Medium priority tasks
+backend,#0E8A16,Backend related work
+frontend,#5319E7,Frontend related work

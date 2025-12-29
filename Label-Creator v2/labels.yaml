@@ -1,0 +1,24 @@
+labels:
+  - name: bug
+    color: "#FF0000"
+    description: Defect or unexpected behavior
+
+  - name: enhancement
+    color: "#1D76DB"
+    description: New feature or improvement
+
+  - name: priority::high
+    color: "#D73A4A"
+    description: High priority tasks
+
+  - name: priority::medium
+    color: "#FBCA04"
+    description: Medium priority tasks
+
+  - name: backend
+    color: "#0E8A16"
+    description: Backend related work
+
+  - name: frontend
+    color: "#5319E7"
+    description: Frontend related work
